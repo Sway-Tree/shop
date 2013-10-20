@@ -1,7 +1,15 @@
+<%= link_to 'New product', new_category_product_path(@category) %>
+
 <p>
   <strong>Name:</strong>
   <%= @category.name %>
 </p>
 
+<h2>Products</h2>
+<%= render @category.products %>
 
-<%= link_to 'Edit', edit_category_path(@post) %> | <%= link_to 'Back', categories_path %>
+<%= link_to 'Products in details', category_products_path(@category) %>
+
+<p>
+<%= link_to 'Edit', edit_category_path(@category) %> | <%= link_to 'Back', categories_path %>
+</p>

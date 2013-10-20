@@ -3,7 +3,9 @@ Shop::Application.routes.draw do
 
   root to: "main#index"
 
-  resources :categories
+  resources :categories do
+    resources :products
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
