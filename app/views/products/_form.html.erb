@@ -1,0 +1,30 @@
+<%= form_for @product do |f| %>
+<% if @product.errors.any? %>
+  <div id="errorExplanation">
+    <h2><%= pluralize(@product.errors.count, "error") %> occurred:</h2>
+    <ul>
+    <% @product.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+  <% end %>
+  <p>
+    <%= f.label :item %><br>
+    <%= f.string_field :item %>
+  </p>
+
+  <p>
+    <%= f.label :description %><br>
+    <%= f.decimal_field :description %>
+  </p>
+
+  <p>
+    <%= f.label :price %><br>
+    <%= f.decimal_field :price %>
+  </p>
+
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
