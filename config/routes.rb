@@ -1,4 +1,16 @@
 Shop::Application.routes.draw do
+
+  devise_for :admins#, :controllers => {:main => "admin/main", :categories => "admin/categories", 
+    #:products => "admin/products"}
+
+  namespace :admin do 
+    resources :categories do
+        resources :products
+    end
+    get "main/index"
+  end
+
+
   get "main/index"
 
   root to: "main#index"

@@ -1,0 +1,25 @@
+<h1>Listing Products</h1>
+ 
+<%= link_to 'New product', new_admin_category_product_path %>
+
+<table>
+  <tr>
+    <th>Item</th>
+    <th>Description</th>
+    <th>Price</th>
+  </tr>
+ 
+  <% @products.each do |product| %>
+    <tr>
+      <td><%= product.item %></td>
+       <td><%= product.description %></td>
+        <td><%= product.price %></td>
+          <td><%= link_to 'Show', admin_category_product_path(@category, product) %></td>
+      <td><%= link_to 'Edit', edit_admin_category_product_path(@category, product)   %></td>
+      <td><%= link_to 'Destroy', admin_category_products_path ,
+                    method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+</table>
+
+<%= link_to 'Back to the category', admin_category_path(@category) %>

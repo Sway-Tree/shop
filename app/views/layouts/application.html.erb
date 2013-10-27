@@ -8,8 +8,16 @@
 </head>
 <body>
 
-|<%= link_to 'Main page', controller: "main" %> |
-<%= link_to 'Categories', controller: "categories" %> |
+|<%= link_to 'Main page', controller: "/main" %> |
+
+<%= link_to 'Categories', controller: "/categories" %> | 
+
+<%= link_to "Sing in", controller: "devise/sessions", action: "new" %> |
+
+<%= link_to "Sing up", controller: "devise/registrations", action: "new" %>  |
+
+<%= link_to "Sing out", controller: "devise/registrations", action: "destroy" %> |
+
 <%= yield %>
 
 </body>
