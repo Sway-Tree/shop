@@ -7,11 +7,19 @@ class Admin::CategoriesController < Admin::AdminsController
 	def create
 		@category = Category.new(params[:category].permit(:name))
 
-		if @category.save
-			redirect_to admin_category_path(@category)
-		else
-			render 'new'
-		end
+		#if @category.save
+		#	redirect_to admin_category_path(@category)
+		#else
+		#	render 'new'
+		#end
+
+		begin
+      		Admin::CategoryCreationService.new.process(@category)
+    	rescue Admin::CategoryCreationService::PostCreationError
+      		render 'new'
+    	end
+
+    	redirect_to admin_category_path(@category)
 	end
 
 	def show
@@ -42,5 +50,20 @@ class Admin::CategoriesController < Admin::AdminsController
 	def index
 		@categories = Category.all
 	end
+
+end
+
+class Admin::CategoryCreationService
+
+  class CategoryCreationError < StandardError; end
+
+  def intialize
+  end
+
+  def process(category)
+    unless category.save 
+      raise CategoryCreationError.new
+    end
+  end
 
 end
